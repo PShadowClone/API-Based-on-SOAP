@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Amr%20Saidam/Documents/NetBeansProjects/FlightServiceModule/src/java/FlightServiceWSDL.wsdl" uri="src/conf/xml-resources/web-services/FlightService/wsdl/FlightServiceWSDL.wsdl"/>
+    <system systemId="file:/C:/Users/Amr%20Saidam/Documents/NetBeansProjects/FlightServiceModule/src/java/FlightServiceTypes.xsd" uri="src/conf/xml-resources/web-services/FlightService/wsdl/FlightServiceTypes.xsd"/>
+</catalog>
+
+

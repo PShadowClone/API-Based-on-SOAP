@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="HotelReservationWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://xml.netbeans.org/schema/HotelAvailabilitySchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL">
+            <xsd:import namespace="http://xml.netbeans.org/schema/HotelAvailabilitySchema" schemaLocation="HotelAvailabilitySchema.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="HotelReservationWSDLOperationRequest">
+        <part name="hotelReservationRequest" type="ns:hotelReservationApplicationType"/>
+    </message>
+    <message name="HotelReservationWSDLOperationResponse">
+        <part name="hotelReservationResponse" type="xsd:string"/>
+    </message>
+    <portType name="HotelReservationWSDLPortType">
+        <operation name="HotelReservationWSDLOperation">
+            <input name="input1" message="tns:HotelReservationWSDLOperationRequest"/>
+            <output name="output1" message="tns:HotelReservationWSDLOperationResponse"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="HotelReservationWSDL">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes.
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="HotelReservationWSDLPortTypeRole" portType="tns:HotelReservationWSDLPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
+
+
+

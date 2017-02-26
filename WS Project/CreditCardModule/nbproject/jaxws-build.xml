@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xalan="http://xml.apache.org/xslt" xmlns:ejbjarproject2="http://www.netbeans.org/ns/j2ee-ejbjarproject/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <mkdir dir="${classes.dir}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${j2ee.platform.wsimport.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-service-CreditCardService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/service/CreditCardService"/>
+        <property name="service-wsdl-CreditCardService" location="${meta.inf}/xml-resources/web-services/CreditCardService/wsdl/CreditCardWSDLWrapper.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/CreditCardService" destdir="${build.generated.dir}/jax-wsCache/service/CreditCardService" wsdl="${service-wsdl-CreditCardService}" catalog="catalog.xml" extension="true" verbose="true" xnocompile="true">
+            <depends file="${wsdl-CreditCardService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/service/CreditCardService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/service/CreditCardService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+        <property name="targetLocation-CreditCardService" location="${meta.inf}/wsdl/CreditCardService"/>
+        <property name="sourceLocation-CreditCardService" location="${meta.inf}/xml-resources/web-services/CreditCardService/wsdl/"/>
+        <copy todir="${targetLocation-CreditCardService}">
+            <fileset dir="${sourceLocation-CreditCardService}"/>
+        </copy>
+    </target>
+    <target name="wsimport-service-clean-CreditCardService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/service/CreditCardService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/org/netbeans/j2ee/wsdl/creditcardmodule/creditcardwsdl"/>
+    </target>
+    <target name="wsimport-service-generate" depends="wsimport-service-CreditCardService"/>
+</project>

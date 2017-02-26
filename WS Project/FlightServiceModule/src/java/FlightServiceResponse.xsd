@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/FlightServiceResponse"
+    xmlns:tns="http://xml.netbeans.org/schema/FlightServiceResponse"
+    elementFormDefault="qualified">
+        
+    <xsd:include schemaLocation="FlightServiceTypes.xsd" />
+    <xsd:element name="flightServiceInformation" type="tns:flightServiceResponse"/>
+   
+
+</xsd:schema>

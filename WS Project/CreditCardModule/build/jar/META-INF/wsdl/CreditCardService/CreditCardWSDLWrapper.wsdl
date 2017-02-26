@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" xmlns:ns="http://xml.netbeans.org/schema/creditCardSchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="CreditCardWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL">
+<wsdl:import namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" location="CreditCardWSDL.wsdl"/>
+<wsdl:binding name="CreditCardWSDLBinding" type="tns:CreditCardWSDLPortType">
+<soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+<wsdl:operation name="checkRservationsBalance">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="checkRservationsBalance_action"/>
+<wsdl:input name="checkRservationsBalanceInfo">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:input>
+<wsdl:output name="checkRservationsBalanceStatus">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CreditCardSale">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="CreditCardSale_action"/>
+<wsdl:input name="creditInfo">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:input>
+<wsdl:output name="creditCardStatus">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="DebitCardSale">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="DebitCardSale_action"/>
+<wsdl:input name="saleInfos">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:input>
+<wsdl:output name="saleStatuss">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CancelCreditCardSale">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="CancelCreditCardSale_action"/>
+<wsdl:input name="cancelSaleInfo">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:input>
+<wsdl:output name="cancelSaleStatus">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CreditCardUserDetail">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="CreditCardUserDetail_action"/>
+<wsdl:input name="PIN">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:input>
+<wsdl:output name="creditCardDetails">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CheckCardDebitStatus">
+<soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="CheckCardDebitStatus_action"/>
+<wsdl:input name="debitOperationInfo">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:input>
+<wsdl:output name="debitOperationStatus">
+<soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="CreditCardWSDLService">
+<wsdl:port name="CreditCardWSDLPort" binding="tns:CreditCardWSDLBinding">
+<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="REPLACE_WITH_ACTUAL_URL"/>
+</wsdl:port>
+</wsdl:service>
+</definitions>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <nextCatalog catalog="nbproject/private/cache/retriever/catalog.xml"/>
+    <system systemId="CreditCardModule/CreditCardWSDL.wsdl" uri="nb-uri:CreditCardModule#src/java/CreditCardWSDL.wsdl"/>
+    <system systemId="CarReservationModule/CarRentalService.wsdl" uri="nb-uri:CarReservationModule#src/java/CarRentalService.wsdl"/>
+    <system systemId="HotelReservationModual/HotelReservationWSDL.wsdl" uri="nb-uri:HotelReservationModual#src/java/HotelReservationWSDL.wsdl"/>
+    <system systemId="FlightServiceModule/FlightServiceWSDL.wsdl" uri="nb-uri:FlightServiceModule#src/java/FlightServiceWSDL.wsdl"/>
+</catalog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

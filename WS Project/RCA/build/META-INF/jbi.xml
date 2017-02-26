@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/CompositeService/compositeService" xmlns:ns2="http://j2ee.netbeans.org/wsdl/CarRentalModule/CarRentalService" xmlns:ns3="RCA" xmlns:ns4="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" xmlns:ns5="http://j2ee.netbeans.org/wsdl/FlightService/FlightServiceWSDL" xmlns:ns6="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
+    <service-assembly>
+        <identification>
+            <name>RCA</name>
+            <description>Represents the Service Assembly of RCA</description>
+        </identification>
+        <service-unit>
+            <identification>
+                <name>RCA-HotelReservationModual</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>HotelReservationModual.jar</artifacts-zip>
+                <component-name>sun-javaee-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>RCA-FlightServiceModule</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>FlightServiceModule.jar</artifacts-zip>
+                <component-name>sun-javaee-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>RCA-CreditCardModule</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>CreditCardModule.jar</artifacts-zip>
+                <component-name>sun-javaee-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>RCA-CompositeService</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>CompositeService.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>RCA-CarReservationModule</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>CarReservationModule.jar</artifacts-zip>
+                <component-name>sun-javaee-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>RCA-sun-http-binding</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>sun-http-binding.jar</artifacts-zip>
+                <component-name>sun-http-binding</component-name>
+            </target>
+        </service-unit>
+        <connections>
+            <connection>
+                <consumer endpoint-name="CarRentalServicePortTypeRole_partnerRole" service-name="ns1:CarReservationService"/>
+                <provider endpoint-name="javaee_CarRentalServicePort" service-name="ns2:CarRentalServiceService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="casaPort1" service-name="ns3:RCAService1"/>
+                <provider endpoint-name="CompositeServiceWSDLPortTypeRole_myRole" service-name="ns1:Customer"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CreditCardWSDLPortTypeRole_partnerRole" service-name="ns1:CreditCardService"/>
+                <provider endpoint-name="javaee_CreditCardWSDLPort" service-name="ns4:CreditCardWSDLService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="FlightServiceWSDLPortTypeRole_partnerRole" service-name="ns1:FlightReservation"/>
+                <provider endpoint-name="javaee_FlightServiceWSDLPort" service-name="ns5:FlightServiceWSDLService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="HotelReservationWSDLPortTypeRole_partnerRole" service-name="ns1:HotelReservation"/>
+                <provider endpoint-name="javaee_HotelReservationWSDLPort" service-name="ns6:HotelReservationWSDLService"/>
+            </connection>
+        </connections>
+    </service-assembly>
+</jbi>

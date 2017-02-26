@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="RCA" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="RCA" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <import namespace="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" location="http://192.168.1.107:9080/RCA-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl">
+    </import>
+  <portType name="dummyCasaPortType">
+  </portType>
+  <binding name="casaBinding1" type="ns:CompositeServiceWSDLPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="ReservationOperation">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body use="literal" namespace="RCA"/>
+      </input>
+      <output name="output1">
+        <soap:body use="literal" namespace="RCA"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="RCAService1">
+    <port name="casaPort1" binding="tns:casaBinding1">
+      <soap:address location="http://192.168.1.107:9080/RCAService1/casaPort1"/>
+    </port>
+  </service>
+</definitions>

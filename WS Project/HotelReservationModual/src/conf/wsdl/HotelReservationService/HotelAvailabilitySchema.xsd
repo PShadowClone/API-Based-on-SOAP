@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/HotelAvailabilitySchema"
+    xmlns:tns="http://xml.netbeans.org/schema/HotelAvailabilitySchema"
+    elementFormDefault="qualified">
+
+    <xsd:simpleType name="priceRange">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="^(\d+)(-)(\d+)$"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="romRates">
+        <xsd:choice>
+            <xsd:sequence>
+                <xsd:element name="regular" type="xsd:string"/>
+                <xsd:element name="highClass" type="xsd:string"/>
+                <xsd:element name="anyone" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:choice>
+
+    </xsd:complexType>
+    <xsd:complexType name="hotelReservationApplicationType">
+        <xsd:choice>
+            <xsd:sequence>
+                <xsd:element name="date" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="dateRange" type="xsd:string"/>
+                <xsd:element name="priceRange" type="tns:priceRange"/>
+                <xsd:element name="price" type="xsd:double"/>
+                <xsd:element name="roomTypes" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="roomRate" type="tns:romRates"/>
+                <xsd:element name="services" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="amenities" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="PIN" type="tns:creditPINType"/>
+
+            </xsd:sequence>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:simpleType name="creditPINType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([1-9]{4})-([1-9]{4})-([1-9]{4})-([1-9]{4})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="hotelReservationApplication" type="tns:hotelReservationApplicationType"/>
+</xsd:schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="CreditCardModule/CreditCardWSDL.wsdl" uri="src/_references/_projects/CreditCardModule/src/java/CreditCardWSDL.wsdl"/>
+    <system systemId="creditCardSchema.xsd" uri="src/_references/_projects/CreditCardModule/src/java/creditCardSchema.xsd"/>
+    <system systemId="CarReservationModule/CarRentalService.wsdl" uri="src/_references/_projects/CarReservationModule/src/java/CarRentalService.wsdl"/>
+    <system systemId="CarRentalRequest.xsd" uri="src/_references/_projects/CarReservationModule/src/java/CarRentalRequest.xsd"/>
+    <system systemId="HotelReservationModual/HotelReservationWSDL.wsdl" uri="src/_references/_projects/HotelReservationModual/src/java/HotelReservationWSDL.wsdl"/>
+    <system systemId="HotelAvailabilitySchema.xsd" uri="src/_references/_projects/HotelReservationModual/src/java/HotelAvailabilitySchema.xsd"/>
+    <system systemId="FlightServiceModule/FlightServiceWSDL.wsdl" uri="src/_references/_projects/FlightServiceModule/src/java/FlightServiceWSDL.wsdl"/>
+    <system systemId="FlightServiceTypes.xsd" uri="src/_references/_projects/FlightServiceModule/src/java/FlightServiceTypes.xsd"/>
+</catalog>

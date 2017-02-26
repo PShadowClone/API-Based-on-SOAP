@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.compapp.projects.jbi</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/j2ee-jbi/1">
+            <name>RCA</name>
+            <minimum-ant-version>1.6</minimum-ant-version>
+            <included-library>reference.HotelReservationModual.dist</included-library>
+            <included-library>reference.FlightServiceModule.dist</included-library>
+            <included-library>reference.CreditCardModule.dist</included-library>
+            <included-library>reference.CompositeService.dist_se</included-library>
+            <included-library>reference.CarReservationModule.dist</included-library>
+        </data>
+        <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
+            <reference>
+                <foreign-project>CarReservationModule</foreign-project>
+                <artifact-type>j2ee_archive</artifact-type>
+                <script>build.xml</script>
+                <target>dist</target>
+                <clean-target>clean</clean-target>
+                <id>dist</id>
+            </reference>
+            <reference>
+                <foreign-project>CompositeService</foreign-project>
+                <artifact-type>CAPS.asa:sun-bpel-engine</artifact-type>
+                <script>build.xml</script>
+                <target>dist_se</target>
+                <clean-target>clean</clean-target>
+                <id>dist_se</id>
+            </reference>
+            <reference>
+                <foreign-project>CreditCardModule</foreign-project>
+                <artifact-type>j2ee_archive</artifact-type>
+                <script>build.xml</script>
+                <target>dist</target>
+                <clean-target>clean</clean-target>
+                <id>dist</id>
+            </reference>
+            <reference>
+                <foreign-project>FlightServiceModule</foreign-project>
+                <artifact-type>j2ee_archive</artifact-type>
+                <script>build.xml</script>
+                <target>dist</target>
+                <clean-target>clean</clean-target>
+                <id>dist</id>
+            </reference>
+            <reference>
+                <foreign-project>HotelReservationModual</foreign-project>
+                <artifact-type>j2ee_archive</artifact-type>
+                <script>build.xml</script>
+                <target>dist</target>
+                <clean-target>clean</clean-target>
+                <id>dist</id>
+            </reference>
+        </references>
+    </configuration>
+</project>

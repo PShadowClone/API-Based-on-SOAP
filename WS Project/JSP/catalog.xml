@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:9080/RunCompsitionService1/casaPort1?wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/localhost_9080/RunCompsitionService1/casaPort1.wsdl"/>
+    <system systemId="http://192.168.1.107:9080/RunCompsition-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/192.168.1.107_9080/RunCompsition-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl"/>
+    <system systemId="http://192.168.1.107:9080/RunCompsition-sun-http-binding/CompositeService/RequestSchema.xsd" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/192.168.1.107_9080/RunCompsition-sun-http-binding/CompositeService/RequestSchema.xsd"/>
+    <system systemId="http://192.168.1.107:9080/runCompositeApplication-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/192.168.1.107_9080/runCompositeApplication-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl"/>
+    <system systemId="http://192.168.1.107:9080/runCompositeApplication-sun-http-binding/CompositeService/RequestSchema.xsd" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/192.168.1.107_9080/runCompositeApplication-sun-http-binding/CompositeService/RequestSchema.xsd"/>
+    <system systemId="http://10.10.192.205:9080/runCompositeApplication-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/10.10.192.205_9080/runCompositeApplication-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl"/>
+    <system systemId="http://10.10.192.205:9080/runCompositeApplication-sun-http-binding/CompositeService/RequestSchema.xsd" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/10.10.192.205_9080/runCompositeApplication-sun-http-binding/CompositeService/RequestSchema.xsd"/>
+    <system systemId="http://DESKTOP-2E1RL7T:9080/runCompositeApplication-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/DESKTOP-2E1RL7T_9080/runCompositeApplication-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl"/>
+    <system systemId="http://DESKTOP-2E1RL7T:9080/runCompositeApplication-sun-http-binding/CompositeService/RequestSchema.xsd" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/DESKTOP-2E1RL7T_9080/runCompositeApplication-sun-http-binding/CompositeService/RequestSchema.xsd"/>
+    <system systemId="http://localhost:9080/runCompositeApplicationService1/casaPort1?wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/localhost_9080/runCompositeApplicationService1/casaPort1.wsdl"/>
+    <system systemId="http://localhost:9080/RCAService1/casaPort1?wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/localhost_9080/RCAService1/casaPort1.wsdl"/>
+    <system systemId="http://192.168.1.107:9080/RCA-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/192.168.1.107_9080/RCA-sun-http-binding/CompositeService/CompositeServiceWSDL.wsdl"/>
+    <system systemId="http://192.168.1.107:9080/RCA-sun-http-binding/CompositeService/RequestSchema.xsd" uri="src/conf/xml-resources/web-service-references/casaPort1/wsdl/192.168.1.107_9080/RCA-sun-http-binding/CompositeService/RequestSchema.xsd"/>
+</catalog>
+
+
+
+
+
+
+
+
+
+
+

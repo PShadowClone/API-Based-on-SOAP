@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="compositeService"
+    targetNamespace="http://enterprise.netbeans.org/bpel/CompositeService/compositeService"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/CompositeService/compositeService"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/RequestSchema" xmlns:ns1="http://xml.netbeans.org/schema/CarRentalRequest" xmlns:ns2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension" ns2:ignoreMissingFromData="yes" xmlns:ns3="http://xml.netbeans.org/schema/creditCardSchema" xmlns:ns4="http://j2ee.netbeans.org/wsdl/CarRentalModule/CarRentalService" xmlns:ns5="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" xmlns:ns6="http://xml.netbeans.org/schema/HotelAvailabilitySchema" xmlns:ns7="http://xml.netbeans.org/schema/FlightServiceTypes">
+    <import namespace="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" location="CompositeServiceWSDL.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" location="CreditCardModule/CreditCardWSDL.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/CarRentalModule/CarRentalService" location="CarReservationModule/CarRentalService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" location="HotelReservationModual/HotelReservationWSDL.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/FlightService/FlightServiceWSDL" location="FlightServiceModule/FlightServiceWSDL.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="CreditCardService" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" partnerLinkType="tns:CreditCardWSDL" partnerRole="CreditCardWSDLPortTypeRole"/>
+        <partnerLink name="CarReservationService" xmlns:tns="http://j2ee.netbeans.org/wsdl/CarRentalModule/CarRentalService" partnerLinkType="tns:CarRentalService" partnerRole="CarRentalServicePortTypeRole"/>
+        <partnerLink name="HotelReservation" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" partnerLinkType="tns:HotelReservationWSDL" partnerRole="HotelReservationWSDLPortTypeRole"/>
+        <partnerLink name="FlightReservation" xmlns:tns="http://j2ee.netbeans.org/wsdl/FlightService/FlightServiceWSDL" partnerLinkType="tns:FlightServiceWSDL" partnerRole="FlightServiceWSDLPortTypeRole"/>
+        <partnerLink name="Customer" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" partnerLinkType="tns:CompositeServiceWSDL" myRole="CompositeServiceWSDLPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+<!--        <variable name="ReservationOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>-->
+        <variable name="ReserveFlightTripResponse" xmlns:tns="http://j2ee.netbeans.org/wsdl/FlightService/FlightServiceWSDL" messageType="tns:ReserveFlightTripResponse"/>
+        <variable name="ReserveFlightTripRequest" xmlns:tns="http://j2ee.netbeans.org/wsdl/FlightService/FlightServiceWSDL" messageType="tns:ReserveFlightTripRequest"/>
+<!--        <variable name="unssuccessSavingForHotelReservationOUT" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>-->
+        <variable name="HotelReservationWSDLOperationResponse" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" messageType="tns:HotelReservationWSDLOperationResponse"/>
+        <variable name="HotelReservationWSDLOperationRequest" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" messageType="tns:HotelReservationWSDLOperationRequest"/>
+<!--        <variable name="InsufficientFundForHotelReservationResponse" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>-->
+<!--        <variable name="repeatedReservationResponse" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>-->
+        <variable name="DebitCardSaleResponseForHotelReservation" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" messageType="tns:DebitCardSaleResponse"/>
+        <variable name="DebitCardSaleRequestForHotelReservation" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" messageType="tns:DebitCardSaleRequest"/>
+<!--        <variable name="UnsuccessEndForCarReservation" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>-->
+        <variable name="CarReservationOperationResponse" messageType="ns4:CarRentalServiceOperationResponse"/>
+        <variable name="CarReservationOperationRequest" messageType="ns4:CarRentalServiceOperationRequest"/>
+<!--    <variable name="InsufficientFundReplyForCarReservation" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>-->
+<!--        <variable name="ReservationOperationCarReservationErrorResponse" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>-->
+        <variable name="DebitResponse" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" messageType="tns:DebitCardSaleResponse"/>
+        <variable name="DebitRequest" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" messageType="tns:DebitCardSaleRequest"/>
+
+        <variable name="CreditCardSaleResponse" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" messageType="tns:CreditCardSaleResponse"/>
+        <variable name="CreditCardSaleRequest" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" messageType="tns:CreditCardSaleRequest"/>
+        <variable name="ReplyFromCompsitionService" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationResponse"/>
+        <variable name="DetailsOfAllServices" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL" messageType="tns:ReservationOperationRequest"/>
+
+    </variables>
+    <sequence>
+        <receive name="ReceiveFromCustomer"
+        createInstance="yes"
+        partnerLink="Customer"
+        operation="ReservationOperation"
+        xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+        portType="tns:CompositeServiceWSDLPortType"
+        variable="DetailsOfAllServices"/>
+        <assign name="getCreditCardRootType">
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:person/ns0:name/ns0:firstName</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:person/ns3:name/ns3:firstName</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:person/ns0:name/ns0:middleName</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:person/ns3:name/ns3:middleName</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:person/ns0:name/ns0:lastName</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:person/ns3:name/ns3:lastName</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:person/ns0:phoneNumber</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:person/ns3:phoneNumber</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:person/ns0:email</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:person/ns3:email</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:person/ns0:address</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:person/ns3:address</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:creditCardInfo/ns0:PIN</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:creditCardInfo/ns3:PIN</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:creditCardInfo/ns0:balance</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:creditCardInfo/ns3:balance</to>
+            </copy>
+            <copy>
+                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:creditCardInfo/ns0:expiredDate</from>
+                <to>$CreditCardSaleRequest.creditInfo/ns3:creditCardInfo/ns3:expiredDate</to>
+            </copy>
+        </assign>
+        <invoke name="CreditCardSaleInvokation" partnerLink="CreditCardService" operation="CreditCardSale" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" portType="tns:CreditCardWSDLPortType" inputVariable="CreditCardSaleRequest" outputVariable="CreditCardSaleResponse"/>
+        <if name="If1">
+            <condition>$CreditCardSaleResponse.creditStatus = 'Done!'</condition>
+            <sequence name="Sequence1">
+                <flow name="Flow1">
+                    <sequence name="FlowSequence">
+                        <assign name="Assign2">
+                            <copy>
+                                <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:creditCardInfo/ns0:PIN</from>
+                                <to>$DebitRequest.saleInfo/ns3:PIN</to>
+                            </copy>
+                            <copy>
+                                <from>'carReservation'</from>
+                                <to>$DebitRequest.saleInfo/ns3:transactionName</to>
+                            </copy>
+                            <copy>
+                                <from>concat($DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:rateValue, '')</from>
+                                <to>$DebitRequest.saleInfo/ns3:payment</to>
+                            </copy>
+                        </assign>
+                        <invoke name="DebitInvokation" partnerLink="CreditCardService" operation="DebitCardSale" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" portType="tns:CreditCardWSDLPortType" inputVariable="DebitRequest" outputVariable="DebitResponse"/>
+                        <if name="If2">
+                            <condition>$DebitResponse.saleStatus = 'Done!'</condition>
+                            <sequence name="Sequence6">
+                                <assign name="Assign5">
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:vehicle/ns0:brand</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:vehicle/ns1:brand</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:vehicle/ns0:color</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:vehicle/ns1:color</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:type</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:type</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:codes</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:codes</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:rateValue</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:rateValue</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:promotionalCodes</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:promotionalCodes</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:rank/ns0:leisure</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:rank/ns1:leisure</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:rank/ns0:corporate</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:rank/ns1:corporate</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:distance/ns0:limited</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:distance/ns1:limited</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rate/ns0:distance/ns0:unlimited</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rate/ns1:distance/ns1:unlimited</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:rental/ns0:rentalPeriod</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:rentalPeriod</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:creditCardInfo/ns0:PIN</from>
+                                        <to>$CarReservationOperationRequest.rentalInfo/ns1:PIN</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="SuccessCarResevationInvoke" partnerLink="CarReservationService" operation="CarRentalServiceOperation" portType="ns4:CarRentalServicePortType" inputVariable="CarReservationOperationRequest" outputVariable="CarReservationOperationResponse"/>
+                                <if name="If4">
+                                    <condition>$CarReservationOperationResponse.rentalingStatus</condition>
+                                    <flow name="Flow2">
+                                        <sequence name="f1">
+                                            <assign name="Assign7">
+                                                <copy>
+                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:creditCardInfo/ns0:PIN</from>
+                                                    <to>$DebitCardSaleRequestForHotelReservation.saleInfo/ns3:PIN</to>
+                                                </copy>
+                                                <copy>
+                                                    <from>'hotelReservation'</from>
+                                                    <to>$DebitCardSaleRequestForHotelReservation.saleInfo/ns3:transactionName</to>
+                                                </copy>
+                                                <copy>
+                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:priceRange</from>
+                                                    <to>$DebitCardSaleRequestForHotelReservation.saleInfo/ns3:payment</to>
+                                                </copy>
+                                            </assign>
+                                            <invoke name="HotelReservationDebitCard" partnerLink="CreditCardService" operation="DebitCardSale" portType="ns5:CreditCardWSDLPortType" inputVariable="DebitCardSaleRequestForHotelReservation" outputVariable="DebitCardSaleResponseForHotelReservation"/>
+                                            <if name="If5">
+                                                <condition>$DebitCardSaleResponseForHotelReservation.saleStatus = 'Done!'</condition>
+                                                <sequence name="Sequence10">
+                                                    <assign name="Assign10">
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:date</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:date</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:dateRange</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:dateRange</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:priceRange</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:priceRange</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:price</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:price</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:roomTypes</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:roomTypes</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:roomRate/ns0:regular</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:roomRate/ns6:regular</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:roomRate/ns0:highClass</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:roomRate/ns6:highClass</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:roomRate/ns0:anyone</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:roomRate/ns6:anyone</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:services</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:services</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:hotelReservationApplication/ns0:amenities</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:amenities</to>
+                                                        </copy>
+                                                        <copy>
+                                                            <from>$DetailsOfAllServices.reservationInfo/ns0:creditCard/ns0:creditCardInfo/ns0:PIN</from>
+                                                            <to>$HotelReservationWSDLOperationRequest.hotelReservationRequest/ns6:PIN</to>
+                                                        </copy>
+                                                    </assign>
+                                                    <invoke name="InvokeHotelReservationService" partnerLink="HotelReservation" operation="HotelReservationWSDLOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" portType="tns:HotelReservationWSDLPortType" inputVariable="HotelReservationWSDLOperationRequest" outputVariable="HotelReservationWSDLOperationResponse"/>
+                                                    <if name="If6">
+                                                        <condition>$HotelReservationWSDLOperationResponse.hotelReservationResponse = ('Done! There are reservations for this CreditCard  ' or 'Done!')</condition>
+                                                        <sequence name="Sequence12">
+                                                            <assign name="Assign12">
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:destination/ns0:country</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:destination/ns7:country</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:destination/ns0:city</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:destination/ns7:city</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:tripDate</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:tripDate</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:clientPreferences/ns0:airlines</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:clientPreferences/ns7:airlines</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:clientPreferences/ns0:flightType</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:clientPreferences/ns7:flightType</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:clientPreferences/ns0:classDegree</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:clientPreferences/ns7:classDegree</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:passenger/ns0:numberOfPassenger</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:passenger/ns7:numberOfPassenger</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$DetailsOfAllServices.reservationInfo/ns0:flightServiceInformation/ns0:passenger/ns0:typeOfPassengers</from>
+                                                                    <to>$ReserveFlightTripRequest.flightServiceInformation/ns7:passenger/ns7:typeOfPassengers</to>
+                                                                </copy>
+                                                            </assign>
+                                                            <invoke name="FlightReservationInvokation" partnerLink="FlightReservation" operation="ReserveFlightTrip" xmlns:tns="http://j2ee.netbeans.org/wsdl/FlightService/FlightServiceWSDL" portType="tns:FlightServiceWSDLPortType" inputVariable="ReserveFlightTripRequest" outputVariable="ReserveFlightTripResponse"/>
+                                                            <assign name="returnCreditCardSaleResponse">
+                                                                <copy>
+                                                                    <from>concat($ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:passenger/ns7:typeOfPassengers, $ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:clientPreferences/ns7:flightType, $ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:destination/ns7:country, $ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:destination/ns7:city, $ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:tripDate, $ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:passenger/ns7:numberOfPassenger, $ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:clientPreferences/ns7:airlines, $ReserveFlightTripResponse.flightServiceInformation/ns7:flightServiceInformation/ns7:clientPreferences/ns7:classDegree, $ReserveFlightTripResponse.flightServiceInformation/ns7:status)</from>
+                                                                    <to variable="ReplyFromCompsitionService" part="result"/>
+                                                                </copy>
+                                                            </assign>
+                                                            <reply name="ReplyToClient"
+        partnerLink="Customer"
+        operation="ReservationOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+        portType="tns:CompositeServiceWSDLPortType"
+        variable="ReplyFromCompsitionService"/>
+                                                        </sequence>
+                                                        <else>
+                                                            <sequence name="Sequence11">
+                                                                <assign name="Assign11">
+                                                                    <copy>
+                                                                        <from>concat('the reservations has been canceled beacause you have got the same one before', $HotelReservationWSDLOperationResponse.hotelReservationResponse)</from>
+                                                                        <to variable="ReplyFromCompsitionService" part="result"/>
+                                                                    </copy>
+                                                                </assign>
+                                                                <reply name="unssuccessSavingForHotelReservation"
+                                                                partnerLink="Customer"
+                                                                operation="ReservationOperation"
+                                                                xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+                                                                portType="tns:CompositeServiceWSDLPortType"
+                                                                variable="ReplyFromCompsitionService"/>
+                                                            </sequence>
+                                                        </else>
+                                                    </if>
+                                                </sequence>
+                                                <elseif>
+                                                    <condition>$DebitCardSaleResponseForHotelReservation.saleStatus = 'is not existed'</condition>
+                                                    <sequence name="Sequence8">
+                                                        <assign name="Assign8">
+                                                            <copy>
+                                                                <from>concat('Credit Card that you use is not existed', $DebitCardSaleResponseForHotelReservation.saleStatus)</from>
+                                                                <to variable="ReplyFromCompsitionService" part="result"/>
+                                                            </copy>
+                                                        </assign>
+                                                        <reply name="repeatedReservation"
+                                                        partnerLink="Customer"
+                                                        operation="ReservationOperation"
+                                                        xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+                                                        portType="tns:CompositeServiceWSDLPortType"
+                                                        variable="ReplyFromCompsitionService"/>
+                                                    </sequence>
+                                                </elseif>
+                                                <else>
+                                                    <sequence name="Sequence9">
+                                                        <assign name="Assign9">
+                                                            <copy>
+                                                                <from>concat($DebitCardSaleResponseForHotelReservation.saleStatus, 'Insufficient Fund')</from>
+                                                                <to variable="ReplyFromCompsitionService" part="result"/>
+                                                            </copy>
+                                                        </assign>
+                                                        <reply name="InsufficientFundForHotelReservation"
+                                                        partnerLink="Customer"
+                                                        operation="ReservationOperation"
+                                                        xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+                                                        portType="tns:CompositeServiceWSDLPortType"
+                                                        variable="ReplyFromCompsitionService"/>
+                                                    </sequence>
+                                                </else>
+                                            </if>
+                                        </sequence>
+                                    </flow>
+                                    <else>
+                                        <sequence name="Sequence7">
+                                            <assign name="Assign6">
+                                                <copy>
+                                                    <from>concat('Something got wrong during in Car Reservation Operation', $CarReservationOperationResponse.rentalingStatus)</from>
+                                                    <to variable="ReplyFromCompsitionService" part="result"/>
+                                                </copy>
+                                            </assign>
+                                            <reply name="UnsuccessCarReservationOperation"
+                                            partnerLink="Customer"
+                                            operation="ReservationOperation"
+                                            xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+                                            portType="tns:CompositeServiceWSDLPortType"
+                                            variable="ReplyFromCompsitionService"/>
+                                        </sequence>
+                                    </else>
+                                </if>
+                            </sequence>
+                            <elseif>
+                                <condition>$DebitResponse.saleStatus = 'is not existed'</condition>
+                                <sequence name="Sequence3">
+                                    <assign name="Assign3">
+                                        <copy>
+                                            <from>concat('Credit Card that you use is not existed', $DebitResponse.saleStatus)</from>
+                                            <to variable="ReplyFromCompsitionService" part="result"/>
+                                        </copy>
+                                    </assign>
+                                    <reply name="CreditIsNotExistedForCardReservation"
+                                    partnerLink="Customer"
+                                    operation="ReservationOperation"
+                                    xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+                                    portType="tns:CompositeServiceWSDLPortType"
+                                    variable="ReplyFromCompsitionService"/>
+                                </sequence>
+                            </elseif>
+                            <else>
+                                <sequence name="Sequence4">
+                                    <if name="If3">
+                                        <condition>$DebitResponse.saleStatus = 'Insufficient Fund'</condition>
+                                        <sequence name="Sequence5">
+                                            <assign name="Assign4">
+                                                <copy>
+                                                    <from variable="DebitResponse" part="saleStatus"/>
+                                                    <to variable="ReplyFromCompsitionService" part="result"/>
+                                                </copy>
+                                            </assign>
+                                            <reply name="InsufficientFundReply"
+                                            partnerLink="Customer"
+                                            operation="ReservationOperation"
+                                            xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+                                            portType="tns:CompositeServiceWSDLPortType"
+                                            variable="ReplyFromCompsitionService"/>
+                                        </sequence>
+                                    </if>
+                                </sequence>
+                            </else>
+                        </if>
+                    </sequence>
+                </flow>
+            </sequence>
+            <else>
+                <sequence name="Sequence2">
+                    <assign name="Assign1">
+                        <copy>
+                            <from>concat('Error inCreditCardSale', $CreditCardSaleResponse.creditStatus)</from>
+                            <to variable="ReplyFromCompsitionService" part="result"/>
+                        </copy>
+                    </assign>
+                    <reply name="ErrorReply" partnerLink="Customer"
+                    operation="ReservationOperation"
+                    xmlns:tns="http://j2ee.netbeans.org/wsdl/CompositeService/CompositeServiceWSDL"
+                    portType="tns:CompositeServiceWSDLPortType"
+                    variable="ReplyFromCompsitionService"/>
+                </sequence>
+            </else>
+        </if>
+    </sequence>
+</process>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

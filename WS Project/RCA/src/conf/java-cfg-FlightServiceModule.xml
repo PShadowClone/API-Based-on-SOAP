@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<javaee-project xmlns="http://java.sun.com/xml/ns/jbi/javaee/config/1/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/FlightService/FlightServiceWSDL" name="FlightServiceModule">
+    <services>
+        <provides enable-for-javaee-http="true" endpoint-name="javaee_FlightServiceWSDLPort" interface-name="ns0:FlightServiceWSDLPortType" service-name="ns0:FlightServiceWSDLService"/>
+    </services>
+</javaee-project>

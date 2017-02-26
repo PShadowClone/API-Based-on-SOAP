@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="CreditCardWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL" xmlns:ns="http://xml.netbeans.org/schema/creditCardSchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/CreditCardModule/CreditCardWSDL">
+            <xsd:import namespace="http://xml.netbeans.org/schema/creditCardSchema" schemaLocation="creditCardSchema.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="CreditCardSaleRequest">
+        <part name="creditInfo" type="ns:creditRootType"/>
+    </message>
+    <message name="CreditCardSaleResponse">
+        <part name="creditStatus" type="xsd:string"/>
+    </message>
+
+    <message name="DebitCardSaleRequest">
+        <part name="saleInfo" type="ns:makeSaleType"/>
+    </message>
+    <message name="DebitCardSaleResponse">
+        <part name="saleStatus" type="xsd:string"/>
+    </message>
+    <message name="CancelCreditCardSaleRequest">
+        <part name="cancelSaleInfo" type="ns:specificCreditCardType"/>
+    </message>
+    <message name="CancelCreditCardSaleResponse">
+        <part name="cancelSaleStatus" type="xsd:string"/>
+    </message>
+
+    <message name="CreditCardUserDetailRequest">
+        <part name="PIN" type="ns:creditPINType"/>
+    </message>
+    <message name="CreditCardUserDetailResponse">
+        <part name="creditCardDetails" type="ns:creditRootType"/>
+    </message>
+
+    <message name="CheckCardDebitStatusRequest">
+        <part name="debitOperationInfo" type="ns:specificCreditCardType"/>
+    </message>
+    <message name="CheckCardDebitStatusResponse">
+        <part name="debitOperationStatus" type="xsd:string"/>
+    </message>
+
+    <message name="checkRservationsBalanceRequest">
+        <part name="checkRservationsBalanceInfo" type="ns:requestedBalance"/>
+    </message>
+    <message name="checkRservationsBalanceResponse">
+        <part name="checkRservationsBalanceStatus" type="xsd:double"/>
+    </message>
+
+    <portType name="CreditCardWSDLPortType">
+        <operation name="checkRservationsBalance">
+            <input name="checkRservationsBalanceInfo" message="tns:checkRservationsBalanceRequest"/>
+            <output name="checkRservationsBalanceStatus" message="tns:checkRservationsBalanceResponse"/>
+        </operation>
+        <operation name="CreditCardSale">
+            <input name="creditInfo" message="tns:CreditCardSaleRequest"/>
+            <output name="creditCardStatus" message="tns:CreditCardSaleResponse"/>
+        </operation>
+
+        <operation name="DebitCardSale">
+            <input name="saleInfos" message="tns:DebitCardSaleRequest"/>
+            <output name="saleStatuss" message="tns:DebitCardSaleResponse"/>
+        </operation>
+
+        <operation name="CancelCreditCardSale">
+            <input name="cancelSaleInfo" message="tns:CancelCreditCardSaleRequest"/>
+            <output name="cancelSaleStatus" message="tns:CancelCreditCardSaleResponse"/>
+        </operation>
+
+        <operation name="CreditCardUserDetail">
+            <input name="PIN" message="tns:CreditCardUserDetailRequest"/>
+            <output name="creditCardDetails" message="tns:CreditCardUserDetailResponse"/>
+        </operation>
+
+        <operation name="CheckCardDebitStatus">
+            <input name="debitOperationInfo" message="tns:CheckCardDebitStatusRequest"/>
+            <output name="debitOperationStatus" message="tns:CheckCardDebitStatusResponse"/>
+        </operation>
+
+    </portType>
+
+
+
+
+    <plnk:partnerLinkType name="CreditCardWSDL">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="CreditCardWSDLPortTypeRole" portType="tns:CreditCardWSDLPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
+

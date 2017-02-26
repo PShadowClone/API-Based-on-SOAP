@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Amr%20Saidam/Documents/NetBeansProjects/HotelReservationModual/src/java/HotelReservationWSDL.wsdl" uri="src/conf/xml-resources/web-services/HotelReservationService/wsdl/HotelReservationWSDL.wsdl"/>
+    <system systemId="file:/C:/Users/Amr%20Saidam/Documents/NetBeansProjects/HotelReservationModual/src/java/HotelAvailabilitySchema.xsd" uri="src/conf/xml-resources/web-services/HotelReservationService/wsdl/HotelAvailabilitySchema.xsd"/>
+</catalog>
+

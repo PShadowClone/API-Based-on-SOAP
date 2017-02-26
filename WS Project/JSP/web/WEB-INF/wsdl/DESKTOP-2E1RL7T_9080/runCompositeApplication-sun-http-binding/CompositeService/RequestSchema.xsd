@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/RequestSchema"
+    xmlns:tns="http://xml.netbeans.org/schema/RequestSchema"
+    elementFormDefault="qualified">
+
+
+    <!-- **************************************************************************  -->
+    <!-- *************************Credit card Schema ******************************  -->
+    <!-- **************************************************************************  -->
+    <xsd:complexType name="personInformationType">
+        <xsd:sequence>
+            <xsd:element name="name" type="tns:userNameType"/>
+            <xsd:element name="phoneNumber" type="xsd:string"/>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="address" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="userNameType">
+        <xsd:sequence>
+            <xsd:element name="firstName" type="xsd:string"/>
+            <xsd:element name="middleName" type="xsd:string"/>
+            <xsd:element name="lastName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="creditCardType">
+        <xsd:sequence>
+            <xsd:element name="PIN" type="tns:creditPINType"/>
+            <xsd:element name="balance" type="xsd:double"/>
+            <xsd:element name="expiredDate" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="creditRootType">
+        <xsd:sequence>
+            <xsd:element name="person" type="tns:personInformationType"/>
+            <xsd:element name="creditCardInfo" type="tns:creditCardType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="creditPINType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([1-9]{4})-([1-9]{4})-([1-9]{4})-([1-9]{4})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="makeSaleType">
+        <xsd:sequence>
+            <xsd:element name="PIN" type="tns:creditPINType"/>
+            <xsd:element name="payment" type="xsd:string"/>
+            <xsd:element name="transactionName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="specificCreditCardType">
+        <xsd:all>
+            <xsd:element name="PIN" type="tns:creditPINType"/>
+            <xsd:element name="transactionName" type="xsd:string"/>
+        </xsd:all>
+    </xsd:complexType>
+
+    
+    <!-- **************************************************************************  -->
+    <!-- *************************Car Reservation Schema **************************  -->
+    <!-- **************************************************************************  -->
+    <xsd:complexType name="vehicleType">
+        <xsd:all>
+            <xsd:element name="brand" type="xsd:string"/>
+            <xsd:element name="color" type="xsd:string"/>
+        </xsd:all>
+    </xsd:complexType>
+
+    <xsd:complexType name="rateType">
+        <xsd:sequence>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="codes" type="xsd:string"/>
+            <xsd:element name="rateValue" type="xsd:double"/>
+            <xsd:element name="promotionalCodes" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="rank" type="tns:rankType"/>
+            <xsd:element name="distance" type="tns:distanceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType  name="rankType">
+        <xsd:choice>
+            <xsd:sequence>
+                <xsd:element name="leisure" type="xsd:string"/>
+                <xsd:element name="corporate" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType  name="distanceType">
+        <xsd:choice>
+            <xsd:sequence>
+                <xsd:element name="limited" type="xsd:string"/>
+                <xsd:element name="unlimited" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="rentalType">
+        <xsd:sequence>
+            <xsd:element name="vehicle" type="tns:vehicleType"/>
+            <xsd:element name="rate" type="tns:rateType"/>
+            <xsd:element name="rentalPeriod" type="xsd:double"/>
+            <xsd:element name="PIN" type="tns:creditPINType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- **************************************************************************  -->
+    <!-- *************************Hotel Reservation Schema ************************  -->
+    <!-- **************************************************************************  -->
+
+
+    <xsd:simpleType name="priceRange">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="^(\d+)(-)(\d+)$"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="romRates">
+        <xsd:choice>
+            <xsd:sequence>
+                <xsd:element name="regular" type="xsd:string"/>
+                <xsd:element name="highClass" type="xsd:string"/>
+                <xsd:element name="anyone" type="xsd:string"/>
+
+            </xsd:sequence>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="hotelReservationApplicationType">
+        <xsd:choice>
+            <xsd:sequence>
+                <xsd:element name="date" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="dateRange" type="xsd:string"/>
+                <xsd:element name="priceRange" type="tns:priceRange"/>
+                <xsd:element name="price" type="xsd:double"/>
+                <xsd:element name="roomTypes" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="roomRate" type="tns:romRates"/>
+                <xsd:element name="services" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="amenities" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="PIN" type="tns:creditPINType"/>
+
+            </xsd:sequence>
+        </xsd:choice>
+    </xsd:complexType>
+
+    
+    <!-- **************************************************************************  -->
+    <!-- *************************Flight Reservation Schema ***********************  -->
+    <!-- **************************************************************************  -->
+
+
+
+
+    <xsd:complexType name="flightServiceResponse">
+        <xsd:sequence>
+            <xsd:element name="flightServiceInformation" type="tns:flightServiceType"/>
+            <xsd:element name="status" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="flightServiceType">
+        <xsd:sequence>
+            <xsd:element name="destination" type="tns:destinationType"/>
+            <xsd:element name="tripDate" type="xsd:string"/>
+            <xsd:element name="clientPreferences" type="tns:clientPreferencesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="passenger" type="tns:passengerType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="destinationType">
+        <xsd:sequence>
+            <xsd:element name="country" type="tns:pureString" />
+            <xsd:element name="city" type="tns:pureString"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="passengerType">
+        <xsd:sequence>
+            <xsd:element name="numberOfPassenger" type="xsd:int" />
+            <xsd:element name="typeOfPassengers" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="clientPreferencesType" >
+        <xsd:sequence>
+            <xsd:element name="airlines" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="flightType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="classDegree" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="pureString">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- **************************************************************************  -->
+    <!-- *************************Request Elements ********************************  -->
+    <!-- **************************************************************************  -->
+    <xsd:complexType name="requestType">
+        <xsd:all>
+            <xsd:element name="flightServiceInformation" type="tns:flightServiceType"/>
+            <xsd:element name="creditCard" type="tns:creditRootType"/>
+            <xsd:element name="rental" type="tns:rentalType"/>
+            <xsd:element name="hotelReservationApplication" type="tns:hotelReservationApplicationType"/>
+        </xsd:all>
+    </xsd:complexType>
+
+
+    <xsd:element name="request" type="tns:requestType"/>
+
+</xsd:schema>

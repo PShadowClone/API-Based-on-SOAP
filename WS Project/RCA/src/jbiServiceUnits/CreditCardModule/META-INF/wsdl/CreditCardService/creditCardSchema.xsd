@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/creditCardSchema"
+    xmlns:tns="http://xml.netbeans.org/schema/creditCardSchema"
+    elementFormDefault="qualified">
+
+    <xsd:complexType name="requestedBalance">
+        <xsd:sequence>
+            <xsd:element name="carReservationBalance" type="xsd:double"/>
+            <xsd:element name="HotelReservationBalance" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="personInformationType">
+        <xsd:sequence>
+            <xsd:element name="name" type="tns:userNameType"/>
+            <xsd:element name="phoneNumber" type="xsd:string"/>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="address" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="userNameType">
+        <xsd:sequence>
+            <xsd:element name="firstName" type="xsd:string"/>
+            <xsd:element name="middleName" type="xsd:string"/>
+            <xsd:element name="lastName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="creditCardType">
+        <xsd:sequence>
+            <xsd:element name="PIN" type="tns:creditPINType"/>
+            <xsd:element name="balance" type="xsd:double"/>
+            <xsd:element name="expiredDate" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="creditRootType">
+        <xsd:sequence>
+            <xsd:element name="person" type="tns:personInformationType"/>
+            <xsd:element name="creditCardInfo" type="tns:creditCardType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="creditPINType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([1-9]{4})-([1-9]{4})-([1-9]{4})-([1-9]{4})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="makeSaleType">
+        <xsd:sequence>
+            <xsd:element name="PIN" type="tns:creditPINType"/>
+            <xsd:element name="payment" type="xsd:string"/>
+            <xsd:element name="transactionName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="specificCreditCardType">
+        <xsd:all>
+            <xsd:element name="PIN" type="tns:creditPINType"/>
+            <xsd:element name="transactionName" type="xsd:string"/>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="creditCard" type="tns:creditRootType"/>
+
+</xsd:schema>

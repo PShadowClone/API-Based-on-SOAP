@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Amr%20Saidam/Documents/NetBeansProjects/CarReservationModule/src/java/CarRentalService.wsdl" uri="src/conf/xml-resources/web-services/CarReservationService/wsdl/CarRentalService.wsdl"/>
+    <system systemId="file:/C:/Users/Amr%20Saidam/Documents/NetBeansProjects/CarReservationModule/src/java/CarRentalRequest.xsd" uri="src/conf/xml-resources/web-services/CarReservationService/wsdl/CarRentalRequest.xsd"/>
+</catalog>
+
+
+
+
+

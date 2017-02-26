@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<javaee-project xmlns="http://java.sun.com/xml/ns/jbi/javaee/config/1/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/HotelReservationModual/HotelReservationWSDL" name="HotelReservationModual">
+    <services>
+        <provides enable-for-javaee-http="true" endpoint-name="javaee_HotelReservationWSDLPort" interface-name="ns0:HotelReservationWSDLPortType" service-name="ns0:HotelReservationWSDLService"/>
+    </services>
+</javaee-project>
